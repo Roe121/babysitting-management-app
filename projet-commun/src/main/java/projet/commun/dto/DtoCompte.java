@@ -16,8 +16,6 @@ public class DtoCompte implements Serializable  {
 	
 	private String		motDePasse;
 	
-	private String		email;
-
 	private boolean		flagAdmin;
 	
 	//-------
@@ -27,11 +25,10 @@ public class DtoCompte implements Serializable  {
 	public DtoCompte() {
 	}
 
-	public DtoCompte(int id, String pseudo, String motDePasse, String email, boolean flagAdmin ) {
+	public DtoCompte(int id, String pseudo, String motDePasse, boolean flagAdmin ) {
 		this.id = id;
 		this.pseudo = pseudo;
 		this.motDePasse = motDePasse;
-		this.email = email;
 		this.flagAdmin = flagAdmin;
 	}
 	
@@ -64,13 +61,6 @@ public class DtoCompte implements Serializable  {
 		this.motDePasse = motDePasse;
 	}
 	
-	public String getEmail() {
-		return email;
-	}
-	
-	public void setEmail(String email) {
-		this.email = email;
-	}
 	
 	public boolean isFlagAdmin() {
 		return flagAdmin;

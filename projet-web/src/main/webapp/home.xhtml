@@ -1,0 +1,47 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<ui:composition template="/template/page-standard.xhtml"
+     xmlns="http://www.w3.org/1999/xhtml"
+     xmlns:h="http://java.sun.com/jsf/html"
+     xmlns:f="http://java.sun.com/jsf/core"
+     xmlns:ui="http://java.sun.com/jsf/facelets">
+
+    <f:metadata>
+        <f:viewAction action="#{utilJsf.messageFromRequestAttribute()}" />
+    </f:metadata>
+
+    <ui:define name="titre">Accueil</ui:define>
+
+    <ui:define name="contenu">
+        <h:form>
+            <h1>Bienvenue sur l'application de Suivi des Gardes d'Enfants</h1>
+            <h2>Votre partenaire pour une garde d'enfants sereine</h2>
+
+            <h:panelGroup>
+                <h:outputText value="Cette application vous permet de gérer facilement les gardes de vos enfants. Que vous soyez un parent cherchant à suivre les heures de garde ou une assistante maternelle cherchant à organiser votre emploi du temps, vous êtes au bon endroit !" />
+            </h:panelGroup>
+
+            <h:panelGroup>
+                <h2>Fonctionnalités</h2>
+                <ul>
+                    <li><h:outputText value="Création de comptes pour parents et assistantes maternelles" /></li>
+                    <li><h:outputText value="Suivi des heures de garde de chaque enfant" /></li>
+                    <li><h:outputText value="Gestion des indemnités de garde" /></li>
+                    <li><h:outputText value="Consultation des montants à payer par mois" /></li>
+                </ul>
+            </h:panelGroup>
+
+            <h:panelGroup>
+                <h2>Accès rapide</h2>
+                <h:commandLink value="Accéder à mon compte" action="#{accountBean.goToAccountPage}" />
+                <h:commandLink value="Créer un nouveau contrat" action="#{contractBean.goToNewContractPage}" />
+            </h:panelGroup>
+
+            <h:panelGroup>
+                <h2>Aide et Support</h2>
+                <h:outputText value="Pour toute question, n'hésitez pas à contacter notre support technique." />
+                <h:commandLink value="Contactez-nous" action="#{supportBean.goToContactPage}" />
+            </h:panelGroup>
+        </h:form>
+    </ui:define>
+
+</ui:composition>

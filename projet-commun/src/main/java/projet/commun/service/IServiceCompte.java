@@ -17,5 +17,5 @@ public interface IServiceCompte {
 	DtoCompte 		retrouver( int idCompte ) ;
 
 	List<DtoCompte>	listerTout() ;
-
+	
 }

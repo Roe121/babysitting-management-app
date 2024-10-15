@@ -1,0 +1,57 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<ui:composition template="/template/page-standard.xhtml"
+     xmlns="http://www.w3.org/1999/xhtml"
+     xmlns:h="http://java.sun.com/jsf/html"
+     xmlns:f="http://java.sun.com/jsf/core"
+     xmlns:ui="http://java.sun.com/jsf/facelets">
+
+    <f:metadata>
+        <f:viewParam name="id" value="#{modelCompte.courant.id}" />
+        <f:viewAction action="#{modelCompte.actualiserCourant()}" />
+    </f:metadata>
+
+    <ui:define name="titre">Création de Compte Assistante maternelle</ui:define>
+
+    <ui:define name="contenu">
+
+    <h:form>
+
+        <table class="form">
+            <!-- Partie Compte -->
+            <tr>
+                <td><h:outputLabel for="id">Id :</h:outputLabel></td>
+                <td>
+                    <h:inputText id="id" size="5" readonly="true"
+                        value="#{modelCompte.courant.id}" />
+                    <br /><h:message for="id" errorClass="error"/>
+                </td>
+            </tr>
+            <tr>
+                <td><h:outputLabel for="pseudo">Pseudo :</h:outputLabel></td>
+                <td>
+                    <h:inputText id="pseudo" size="25" 
+                        value="#{modelCompte.courant.pseudo}" />
+                    <br /><h:message for="pseudo" errorClass="error"/>
+                </td>
+            </tr>
+            <tr>
+                <td><h:outputLabel for="motDePasse">Mot de passe :</h:outputLabel></td>
+                <td>
+                    <h:inputText id="motDePasse" size="25" 
+                        value="#{modelCompte.courant.motDePasse}" />
+                    <br /><h:message for="motDePasse" errorClass="error"/>
+                </td>
+            </tr>
+
+
+        </table>
+
+        <br /> 
+        <h:commandButton value="Valider" 
+            action="#{modelCompte.validerMiseAJourAss()}" />
+        <h:button value="Retour" outcome="comptes" />
+    </h:form>
+
+    </ui:define>
+
+</ui:composition>

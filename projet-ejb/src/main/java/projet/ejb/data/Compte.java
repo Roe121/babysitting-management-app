@@ -28,9 +28,6 @@ public class Compte  {
 	@Column( name = "motdepasse")
 	private String		motDePasse;
 	
-	@Column( name = "email")
-	private String		email;
-	
 	@Column( name = "flagadmin" )
 	private boolean		flagAdmin;
 	
@@ -41,11 +38,12 @@ public class Compte  {
 	public Compte() {
 	}
 
-	public Compte(int id, String pseudo, String motDePasse, String email) {
+	public Compte(int id, String pseudo, String motDePasse,boolean flagAdmin) {
 		this.id = id;
 		this.pseudo = pseudo;
 		this.motDePasse = motDePasse;
-		this.email = email;
+		this.flagAdmin = flagAdmin;
+		
 	}
 		
 	//-------
@@ -74,14 +72,6 @@ public class Compte  {
 
 	public void setMotDePasse(String motDePasse) {
 		this.motDePasse = motDePasse;
-	}
-	
-	public String getEmail() {
-		return email;
-	}
-	
-	public void setEmail(String email) {
-		this.email = email;
 	}
 
 	public boolean isFlagAdmin() {

@@ -11,45 +11,59 @@
 
 	<h:outputStylesheet name="styles.css" library="css" />
 
-	<script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.6.0.js" type="text/javascript"></script>
-	<script src="https://ajax.aspnetcdn.com/ajax/jquery.ui/1.12.1/jquery-ui.js" type="text/javascript" ></script>	
-	<link rel="stylesheet" href="https://ajax.aspnetcdn.com/ajax/jquery.ui/1.12.1/themes/smoothness/jquery-ui.css" />
+	<script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.6.0.js"
+		type="text/javascript"></script>
+	<script
+		src="https://ajax.aspnetcdn.com/ajax/jquery.ui/1.12.1/jquery-ui.js"
+		type="text/javascript"></script>
+	<link rel="stylesheet"
+		href="https://ajax.aspnetcdn.com/ajax/jquery.ui/1.12.1/themes/smoothness/jquery-ui.css" />
 	<h:outputScript name="datepicker-fr.js" library="js" />
 
 	<ui:insert name="head" />
 </h:head>
 <h:body>
-<ui:debug hotkey="x" rendered="#{initParam['javax.faces.PROJECT_STAGE'] == 'Development'}"/>
-<div id="body">
+	<ui:debug hotkey="x"
+		rendered="#{initParam['javax.faces.PROJECT_STAGE'] == 'Development'}" />
+	<div id="body">
 
-<div id="header">
-	<h:outputText value="&nbsp;" rendered="#{not compteActif.loggedIn}" />
-	<h:form rendered="#{compteActif.loggedIn}">
-		<h:link outcome="comptes" value="Personnes" rendered="#{compteActif.loggedIn }" />
-		<h:panelGroup rendered="#{compteActif.admin}">
-			<h:link outcome="comptes" value="Catégories"  />
-			<h:link outcome="comptes" value="Comptes"  />
-		</h:panelGroup>
-		<h:commandLink action="#{compteActif.disconnect()}" value="Déconnexion"  />
-	</h:form>
-</div>
+		<div id="header">
+			<h:outputText value="&nbsp;" rendered="#{not compteActif.loggedIn}" />
+			<h:form rendered="#{compteActif.loggedIn}">
+				<h:link outcome="home" value="Accueil"
+					rendered="#{compteActif.loggedIn }" />
+				<h:panelGroup rendered="#{compteActif.admin}">
+					<h:link outcome="comptes" value="Comptes" />
+					<h:link outcome="parents" value="Parents" />
+					<h:link outcome="comptes" value="Saisie du suivi journalier" />
+					<h:link outcome="comptes" value="Récaps montants à payer par contrat" />
+				</h:panelGroup>
+				<h:commandLink action="#{compteActif.disconnect()}"
+					value="Déconnexion" />
+			</h:form>
+		</div>
 
-<h1><ui:insert name="titre">Titre absent</ui:insert></h1>
+		<h1>
+			<ui:insert name="titre">Titre absent</ui:insert>
+		</h1>
 
-<h:messages errorClass="error" globalOnly="false" infoClass="info" styleClass="messages" warnClass="warning" />
+		<h:messages errorClass="error" globalOnly="false" infoClass="info"
+			styleClass="messages" warnClass="warning" />
 
-<div id="content">
-	<ui:insert name="contenu">
+		<div id="content">
+			<ui:insert name="contenu">
 		Contenu absent
 	</ui:insert>
-</div>
+		</div>
 
-<div id="footer">©
-	<h:outputText value="#{utilJsf.now()}" >
-		<f:convertDateTime pattern="yyyy" />
-	</h:outputText>
- 	- #{initParam['site.name']}
-</div>
+		<div id="footer">
+			©
+			<h:outputText value="#{utilJsf.now()}">
+				<f:convertDateTime pattern="yyyy" />
+			</h:outputText>
+			- #{initParam['site.name']}
+		</div>
 
-</div></h:body>
+	</div>
+</h:body>
 </html>

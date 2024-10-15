@@ -3,7 +3,6 @@ package projet.jsf.data;
 import java.io.Serializable;
 import java.util.Objects;
 
-import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
 
@@ -23,11 +22,6 @@ public class Compte implements Serializable  {
 	@NotBlank( message = "Le mot de passe doit être renseigné")
 	@Size(max=25, message = "Valeur trop longue pour le mot de passe : 25 car. maxi" )
 	private String		motDePasse;
-
-	@NotBlank( message = "L'adresse e-mail doit être renseigné")
-	@Size(max=100, message = "Valeur trop longue pour l'adresse e-mail : 100 car. maxi" )
-	@Email( message = "Adresse e-mail invalide" )
-	private String		email;
 	
 	private boolean	flagAdmin;
 
@@ -38,12 +32,11 @@ public class Compte implements Serializable  {
 	public Compte() {
 	}
 	
-	public Compte(Integer id, String pseudo, String motDePasse, String email, boolean flagAdmin) {
+	public Compte(Integer id, String pseudo, String motDePasse, boolean flagAdmin) {
 		super();
 		this.id = id;
 		this.pseudo = pseudo;
 		this.motDePasse = motDePasse;
-		this.email = email;
 		this.flagAdmin = flagAdmin;
 	}
 
@@ -75,13 +68,6 @@ public class Compte implements Serializable  {
 		this.motDePasse = motDePasse;
 	}
 	
-	public String getEmail() {
-		return email;
-	}
-	
-	public void setEmail(String email) {
-		this.email = email;
-	}
 	
 	public boolean isFlagAdmin() {
 		return flagAdmin;

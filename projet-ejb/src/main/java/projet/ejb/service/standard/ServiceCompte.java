@@ -9,6 +9,11 @@ import javax.ejb.Remote;
 import javax.ejb.Stateless;
 import javax.ejb.TransactionAttribute;
 import javax.inject.Inject;
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import projet.commun.dto.DtoCompte;
 import projet.commun.exception.ExceptionValidation;
@@ -22,10 +27,17 @@ import projet.ejb.data.mapper.IMapperEjb;
 public class ServiceCompte implements IServiceCompte {
 
 	// Champs
+	
+	private static final Logger logger = LoggerFactory.getLogger(ServiceCompte.class);
+
+	@PersistenceContext
+	private EntityManager	em;
+	
 	@Inject
 	private IMapperEjb mapper;
 	@Inject
 	private IDaoCompte daoCompte;
+
 
 	// Actions
 
@@ -33,6 +45,7 @@ public class ServiceCompte implements IServiceCompte {
 	public int inserer(DtoCompte dtoCompte) throws ExceptionValidation {
 		verifierValiditeDonnees(dtoCompte);
 		int id = daoCompte.inserer(mapper.map(dtoCompte));
+
 		return id;
 	}
 
@@ -62,6 +75,7 @@ public class ServiceCompte implements IServiceCompte {
 		}
 		return liste;
 	}
+	
 
 	// Méthodes auxiliaires
 
@@ -87,13 +101,11 @@ public class ServiceCompte implements IServiceCompte {
 			message.append("\nLe mot de passe est trop long.");
 		}
 
-		if (dtoCompte.getEmail() == null || dtoCompte.getEmail().isEmpty()) {
-			message.append("\nL'adresse e-mail est absente.");
-		}
-
 		if (message.length() > 0) {
 			throw new ExceptionValidation(message.toString().substring(1));
 		}
+	
+    	
 	}
 
 }
