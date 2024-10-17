@@ -3,13 +3,15 @@ package projet.jsf.data.mapper;
 import javax.annotation.processing.Generated;
 import javax.enterprise.context.ApplicationScoped;
 import projet.commun.dto.DtoCompte;
+import projet.commun.dto.DtoContrat;
 import projet.commun.dto.DtoParent;
 import projet.jsf.data.Compte;
+import projet.jsf.data.Contrat;
 import projet.jsf.data.Parent;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2024-10-13T12:00:08+0200",
+    date = "2024-10-16T14:40:38+0200",
     comments = "version: 1.5.5.Final, compiler: Eclipse JDT (IDE) 1.4.100.v20220318-0906, environment: Java 17.0.12 (Eclipse Adoptium)"
 )
 @ApplicationScoped
@@ -159,6 +161,106 @@ public class IMapperImpl implements IMapper {
         target.setAdressePostale( source.getAdressePostale() );
         target.setAdresseEmail( source.getAdresseEmail() );
         target.setTelephone( source.getTelephone() );
+
+        return target;
+    }
+
+    @Override
+    public Contrat map(DtoContrat source) {
+        if ( source == null ) {
+            return null;
+        }
+
+        Contrat contrat = new Contrat();
+
+        contrat.setId( source.getId() );
+        contrat.setParent( map( source.getParent() ) );
+        contrat.setNomEnfant( source.getNomEnfant() );
+        contrat.setPrenomEnfant( source.getPrenomEnfant() );
+        contrat.setDateNaissanceEnfant( source.getDateNaissanceEnfant() );
+        contrat.setDateDebut( source.getDateDebut() );
+        contrat.setDateFin( source.getDateFin() );
+        contrat.setTarifHoraire( source.getTarifHoraire() );
+        contrat.setIndemniteEntretienTauxHoraire( source.getIndemniteEntretienTauxHoraire() );
+        contrat.setIndemniteEntretienMinimum( source.getIndemniteEntretienMinimum() );
+        contrat.setIndemniteRepas( source.getIndemniteRepas() );
+
+        return contrat;
+    }
+
+    @Override
+    public DtoContrat map(Contrat source) {
+        if ( source == null ) {
+            return null;
+        }
+
+        DtoContrat dtoContrat = new DtoContrat();
+
+        dtoContrat.setDateDebut( source.getDateDebut() );
+        dtoContrat.setDateFin( source.getDateFin() );
+        dtoContrat.setDateNaissanceEnfant( source.getDateNaissanceEnfant() );
+        if ( source.getId() != null ) {
+            dtoContrat.setId( source.getId() );
+        }
+        dtoContrat.setIndemniteEntretienMinimum( source.getIndemniteEntretienMinimum() );
+        dtoContrat.setIndemniteEntretienTauxHoraire( source.getIndemniteEntretienTauxHoraire() );
+        dtoContrat.setIndemniteRepas( source.getIndemniteRepas() );
+        dtoContrat.setNomEnfant( source.getNomEnfant() );
+        dtoContrat.setParent( map( source.getParent() ) );
+        dtoContrat.setPrenomEnfant( source.getPrenomEnfant() );
+        dtoContrat.setTarifHoraire( source.getTarifHoraire() );
+
+        return dtoContrat;
+    }
+
+    @Override
+    public Contrat duplicate(Contrat source) {
+        if ( source == null ) {
+            return null;
+        }
+
+        Contrat contrat = new Contrat();
+
+        contrat.setId( source.getId() );
+        contrat.setParent( duplicate( source.getParent() ) );
+        contrat.setNomEnfant( source.getNomEnfant() );
+        contrat.setPrenomEnfant( source.getPrenomEnfant() );
+        contrat.setDateNaissanceEnfant( source.getDateNaissanceEnfant() );
+        contrat.setDateDebut( source.getDateDebut() );
+        contrat.setDateFin( source.getDateFin() );
+        contrat.setTarifHoraire( source.getTarifHoraire() );
+        contrat.setIndemniteEntretienTauxHoraire( source.getIndemniteEntretienTauxHoraire() );
+        contrat.setIndemniteEntretienMinimum( source.getIndemniteEntretienMinimum() );
+        contrat.setIndemniteRepas( source.getIndemniteRepas() );
+
+        return contrat;
+    }
+
+    @Override
+    public Contrat update(Contrat target, Contrat source) {
+        if ( source == null ) {
+            return target;
+        }
+
+        target.setId( source.getId() );
+        if ( source.getParent() != null ) {
+            if ( target.getParent() == null ) {
+                target.setParent( new Parent() );
+            }
+            update( target.getParent(), source.getParent() );
+        }
+        else {
+            target.setParent( null );
+        }
+        target.setNomEnfant( source.getNomEnfant() );
+        target.setPrenomEnfant( source.getPrenomEnfant() );
+        target.setDateNaissanceEnfant( source.getDateNaissanceEnfant() );
+        target.setDateDebut( source.getDateDebut() );
+        target.setDateFin( source.getDateFin() );
+        target.setTarifHoraire( source.getTarifHoraire() );
+        target.setIndemniteEntretienTauxHoraire( source.getIndemniteEntretienTauxHoraire() );
+        target.setIndemniteEntretienMinimum( source.getIndemniteEntretienMinimum() );
+        target.setIndemniteRepas( source.getIndemniteRepas() );
 
         return target;
     }

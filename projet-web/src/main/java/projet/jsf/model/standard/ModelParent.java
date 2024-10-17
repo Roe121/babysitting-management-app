@@ -9,9 +9,15 @@ import javax.faces.view.ViewScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+import projet.commun.dto.DtoContrat;
 import projet.commun.dto.DtoParent;
 import projet.commun.exception.ExceptionValidation;
+import projet.commun.service.IServiceContrat;
 import projet.commun.service.IServiceParent;
+import projet.jsf.data.Contrat;
 import projet.jsf.data.Parent;
 import projet.jsf.data.mapper.IMapper;
 import projet.jsf.util.UtilJsf;
@@ -25,13 +31,19 @@ public class ModelParent implements Serializable {
 	//-------
 	// Champs
 	//-------
-	
+	private static final Logger logger = LoggerFactory.getLogger(ModelParent.class);
+
 	private List<Parent>	liste;
+	
+	private List<Contrat> contratsParent;
 	
 	private Parent			courant;
 	
 	@EJB
 	private IServiceParent	serviceParent;
+	
+	@EJB
+    private IServiceContrat serviceContrat;
 	
 	@Inject
 	private IMapper			mapper;
@@ -56,6 +68,19 @@ public class ModelParent implements Serializable {
 		}
 		return courant;
 	}
+	
+	 public List<Contrat> getContratsParent() {
+	        if (contratsParent == null && courant != null && courant.getId() != null) {
+	            contratsParent = new ArrayList<>();
+	            for (DtoContrat dto : serviceContrat.listerParParent(courant.getId())) {
+	                contratsParent.add(mapper.map(dto));  // Mapper les DtoContrat vers des objets Contrat
+	            }
+	        }
+	        
+//	        logger.info("Contrats pour le parent {} sont {} ", courant.getNom(), contratsParent.toString());
+	        
+	        return contratsParent;
+	    }
 	
 	//-------
 	// Initialisaitons

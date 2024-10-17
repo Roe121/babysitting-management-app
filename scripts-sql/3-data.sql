@@ -36,10 +36,12 @@ ALTER TABLE tarifs_en_vigueur ALTER COLUMN IdTarif RESTART WITH 4;
 -- Insère les données pour la table contrat
 INSERT INTO contrat (IdContrat, IdParent, NomEnfant, PrenomEnfant, DateNaissanceEnfant, DateDebut, DateFin, TarifHoraire, IndemniteEntretienTauxHoraire, IndemniteEntretienMinimum, IndemniteRepas) VALUES 
 (1, 1, 'Lucas', 'Dupont', '2019-05-15', '2024-09-01', '2025-06-30', 3.57, 0.35, 2.65, 1.00),
-(2, 2, 'Emma', 'Martin', '2018-04-20', '2024-09-01', '2025-06-30', 3.50, 0.30, 2.00, 1.50);
+(2, 2, 'Emma', 'Martin', '2018-04-20', '2024-09-01', '2025-06-30', 3.50, 0.30, 2.00, 1.50),
+(3, 1, 'Léa', 'Dupont', '2020-03-10', '2024-09-01', '2025-06-30', 4.00, 0.40, 2.75, 1.20),  
+(4, 2, 'Milo', 'Martin', '2019-11-15', '2024-09-01', '2025-06-30', 3.80, 0.35, 2.50, 1.00);   
 
 -- Réinitialise l'identifiant IdContrat à 4
-ALTER TABLE contrat ALTER COLUMN IdContrat RESTART WITH 4;
+ALTER TABLE contrat ALTER COLUMN IdContrat RESTART WITH 6;
 
 -- Insère les données pour la table garde
 INSERT INTO garde (IdGarde, IdContrat, DateJour, HeureArrivee, HeureDepart, APrisRepas) VALUES 

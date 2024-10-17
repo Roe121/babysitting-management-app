@@ -56,17 +56,16 @@
 					<h:button outcome="formulaire?id=#{item.id}"
 						image="#{ resource['images:modifier.png'] }" title="Modifier"
 						styleClass="image-action" />
+					<h:button outcome="contrats" value="Gérer Contrats"
+						image="#{resource['images:modifier.png']}" title="Gérer contrats"
+						styleClass="image-action">
+						<f:param name="id" value="#{item.id}" />
+					</h:button>
 				</h:column>
-				
-				<h:column>
-                    <f:facet name="header">A un compte ?</f:facet>
-                    <h:outputText value="#{item.compte == null ? 'Non' : 'Oui'}" />
-                </h:column>
+
 
 			</h:dataTable>
 
-			<br />
-			<h:button value="Ajouter" outcome="formulaire" />
 
 		</h:form>
 

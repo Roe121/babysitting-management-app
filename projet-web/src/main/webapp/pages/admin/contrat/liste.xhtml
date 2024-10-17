@@ -1,0 +1,85 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<ui:composition template="/template/page-standard.xhtml"
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+
+	<f:metadata>
+		<f:viewParam name="id" value="#{modelParent.courant.id}" />
+	</f:metadata>
+
+	<ui:define name="titre">Contrats pour le parent ID: #{modelParent.courant.id}</ui:define>
+
+	<ui:define name="contenu">
+		<h:form>
+
+			<h:dataTable styleClass="liste" rowClasses="impair, pair"
+				value="#{modelParent.contratsParent}" var="contrat" border="1">
+				<h:column>
+					<f:facet name="header">Nom de l'enfant</f:facet>
+					<h:outputText value="#{contrat.nomEnfant}" />
+				</h:column>
+				<h:column>
+					<f:facet name="header">Prénom de l'enfant</f:facet>
+					<h:outputText value="#{contrat.prenomEnfant}" />
+				</h:column>
+				<h:column>
+					<f:facet name="header">Date de naissance de l'enfant</f:facet>
+					<h:outputText value="#{contrat.dateNaissanceEnfant}" />
+				</h:column>
+				<h:column>
+					<f:facet name="header">Date de début</f:facet>
+					<h:outputText value="#{contrat.dateDebut}" />
+				</h:column>
+				<h:column>
+					<f:facet name="header">Date de fin</f:facet>
+					<h:outputText value="#{contrat.dateFin}" />
+				</h:column>
+				<h:column>
+					<f:facet name="header">Tarif horaire</f:facet>
+					<h:outputText value="#{contrat.tarifHoraire}" />
+				</h:column>
+				<h:column>
+					<f:facet name="header">Indemnité d'entretien (Taux horaire)</f:facet>
+					<h:outputText value="#{contrat.indemniteEntretienTauxHoraire}" />
+				</h:column>
+				<h:column>
+					<f:facet name="header">Indemnité d'entretien (Montant minimum)</f:facet>
+					<h:outputText value="#{contrat.indemniteEntretienMinimum}" />
+				</h:column>
+				<h:column>
+					<f:facet name="header">Indemnité de repas</f:facet>
+					<h:outputText value="#{contrat.indemniteRepas}" />
+				</h:column>
+
+				<h:column>
+					<f:facet name="header">
+						<h:outputText value="Actions" />
+					</f:facet>
+					<h:button outcome="formulaireContrat"
+						image="#{ resource['images:modifier.png'] }" title="Modifier"
+						styleClass="image-action">
+						<f:param name="id" value="#{contrat.id}" />
+						<f:param name="parentId" value="#{contrat.parent.id}" /> 
+					</h:button>
+					<h:commandButton action="#" value="Supprimer"
+						onclick="return confirm('Confirmez-vous la suppression ?')"
+						image="#{ resource['images:supprimer.png'] }" title="Supprimer"
+						styleClass="image-action">
+						<f:ajax render="@form" execute="@form" />
+					</h:commandButton>
+				</h:column>
+
+			</h:dataTable>
+
+			<br />
+			<h:button value="Ajouter un nouveau contrat"
+				outcome="formulaireContrat">
+ 				<f:param name="parentId" value="#{modelParent.courant.id}" /> 
+			</h:button>
+			<h:button value="Retour" outcome="parents" />
+		</h:form>
+	</ui:define>
+
+</ui:composition>

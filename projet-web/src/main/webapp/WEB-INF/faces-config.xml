@@ -4,25 +4,45 @@
  <navigation-rule>
   <from-view-id>*</from-view-id>
   <navigation-case>
+   <from-outcome>home</from-outcome>
+   <to-view-id>/home.xhtml</to-view-id>
+  </navigation-case>
+  <navigation-case>
    <from-outcome>connexion</from-outcome>
    <to-view-id>/connexion.xhtml</to-view-id>
    <redirect/>
-  </navigation-case>
-  <navigation-case>
-   <from-outcome>comptes</from-outcome>
-   <to-view-id>/pages/admin/compte/liste.xhtml</to-view-id>
   </navigation-case>
   <navigation-case>
    <from-outcome>info</from-outcome>
    <to-view-id>/pages/info.xhtml</to-view-id>
   </navigation-case>
   <navigation-case>
-   <from-outcome>home</from-outcome>
-   <to-view-id>/home.xhtml</to-view-id>
+   <from-outcome>comptes</from-outcome>
+   <to-view-id>/pages/admin/compte/liste.xhtml</to-view-id>
+  </navigation-case>
+  <navigation-case>
+   <from-outcome>formulaireAssMat</from-outcome>
+   <to-view-id>/pages/admin/compte/formulaireAssMat.xhtml</to-view-id>
+  </navigation-case>
+  <navigation-case>
+   <from-outcome>formulaireCompteParent</from-outcome>
+   <to-view-id>/pages/admin/compte/formulaireParent.xhtml</to-view-id>
   </navigation-case>
   <navigation-case>
    <from-outcome>parents</from-outcome>
    <to-view-id>/pages/admin/parent/liste.xhtml</to-view-id>
+  </navigation-case>
+  <navigation-case>
+   <from-outcome>formulaireContrat</from-outcome>
+   <to-view-id>/pages/admin/contrat/formulaire.xhtml</to-view-id>
+  </navigation-case>
+  <navigation-case>
+   <from-outcome>contrats</from-outcome>
+   <to-view-id>/pages/admin/contrat/liste.xhtml</to-view-id>
+  </navigation-case>
+  <navigation-case>
+   <from-outcome>formulaireParent</from-outcome>
+   <to-view-id>/pages/admin/parent/formulaire.xhtml</to-view-id>
   </navigation-case>
  </navigation-rule>
  <application/>

@@ -1,0 +1,103 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<ui:composition template="/template/page-standard.xhtml"
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+
+	<f:metadata>
+		<f:viewParam name="id" value="#{modelContrat.courant.id}" />
+		<f:viewParam name="parentId" value="#{modelContrat.idParentCourant}" />
+		<f:viewAction action="#{modelContrat.actualiserCourant()}" />
+	</f:metadata>
+
+	<ui:define name="titre">Contrat enfant #{modelContrat.courant.nomEnfant} #{modelContrat.courant.prenomEnfant}</ui:define>
+
+	<ui:define name="contenu">
+
+		<h:form>
+
+			<table class="form">
+				<tr>
+					<td><h:outputLabel for="id">Id du Contrat :</h:outputLabel></td>
+					<td><h:inputText id="id" size="5" readonly="true"
+							value="#{modelContrat.courant.id}" /> <br /> <h:message
+							for="id" errorClass="error" /></td>
+				</tr>
+				<tr>
+					<td><h:outputLabel for="nomEnfant">Nom de l'enfant :</h:outputLabel></td>
+					<td><h:inputText id="nomEnfant" size="25"
+							value="#{modelContrat.courant.nomEnfant}" /> <br /> <h:message
+							for="nomEnfant" errorClass="error" /></td>
+				</tr>
+				<tr>
+					<td><h:outputLabel for="prenomEnfant">Prénom de l'enfant :</h:outputLabel></td>
+					<td><h:inputText id="prenomEnfant" size="25"
+							value="#{modelContrat.courant.prenomEnfant}" /> <br /> <h:message
+							for="prenomEnfant" errorClass="error" /></td>
+				</tr>
+				<tr>
+					<td><h:outputLabel for="dateNaissanceEnfant">Date de naissance de l'enfant :</h:outputLabel></td>
+					<td><p:calendar id="dateNaissanceEnfant"
+							value="#{modelContrat.courant.dateNaissanceEnfant}"
+							pattern="yyyy-MM-dd" locale="fr" /> <h:message
+							for="dateNaissanceEnfant" errorClass="error" /></td>
+				</tr>
+				<tr>
+					<td><h:outputLabel for="dateDebut">Date de début du contrat :</h:outputLabel></td>
+					<td><p:calendar id="dateDebut"
+							value="#{modelContrat.courant.dateDebut}" pattern="yyyy-MM-dd"
+							locale="fr" /> <h:message for="dateDebut" errorClass="error" />
+					</td>
+				</tr>
+				<tr>
+					<td><h:outputLabel for="dateFin">Date de fin du contrat :</h:outputLabel></td>
+					<td><p:calendar id="dateFin"
+							value="#{modelContrat.courant.dateFin}" pattern="yyyy-MM-dd"
+							locale="fr" /> <h:message for="dateFin" errorClass="error" /></td>
+				</tr>
+				<tr>
+					<td><h:outputLabel for="tarifHoraire">Tarif horaire :</h:outputLabel></td>
+					<td><h:inputText id="tarifHoraire" size="10"
+							value="#{modelContrat.courant.tarifHoraire}" /> <br /> <h:message
+							for="tarifHoraire" errorClass="error" /></td>
+				</tr>
+				<tr>
+					<td><h:outputLabel for="indemniteEntretienTauxHoraire">Indemnité d'entretien (Taux horaire) :</h:outputLabel></td>
+					<td><h:inputText id="indemniteEntretienTauxHoraire" size="10"
+							value="#{modelContrat.courant.indemniteEntretienTauxHoraire}" />
+						<br /> <h:message for="indemniteEntretienTauxHoraire"
+							errorClass="error" /></td>
+				</tr>
+				<tr>
+					<td><h:outputLabel for="indemniteEntretienMinimum">Indemnité d'entretien (Montant minimum) :</h:outputLabel></td>
+					<td><h:inputText id="indemniteEntretienMinimum" size="10"
+							value="#{modelContrat.courant.indemniteEntretienMinimum}" /> <br />
+						<h:message for="indemniteEntretienMinimum" errorClass="error" /></td>
+				</tr>
+				<tr>
+					<td><h:outputLabel for="indemniteRepas">Indemnité de repas :</h:outputLabel></td>
+					<td><h:inputText id="indemniteRepas" size="10"
+							value="#{modelContrat.courant.indemniteRepas}" /> <br /> <h:message
+							for="indemniteRepas" errorClass="error" /></td>
+				</tr>
+			</table>
+
+			<br />
+			<h:commandButton value="Valider"
+				action="#{modelContrat.validerMiseAJour()}" />
+
+
+			<h:button value="Retour" outcome="contrats">
+			<f:param name="id" value="#{modelContrat.idParentCourant}" />
+			</h:button>
+
+
+		</h:form>
+
+	</ui:define>
+
+</ui:composition>
+
+
