@@ -12,14 +12,15 @@ import javax.inject.Named;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import projet.commun.dto.DtoCompte;
 import projet.commun.dto.DtoContrat;
+import projet.commun.dto.DtoGarde;
 import projet.commun.dto.DtoParent;
 import projet.commun.exception.ExceptionValidation;
 import projet.commun.service.IServiceContrat;
+import projet.commun.service.IServiceGarde;
 import projet.commun.service.IServiceParent; // Nouveau service pour gérer les parents
 import projet.jsf.data.Contrat;
-import projet.jsf.data.Parent; // Ajout de la classe Parent
+import projet.jsf.data.Garde;
 import projet.jsf.data.mapper.IMapper;
 import projet.jsf.util.UtilJsf;
 
@@ -39,10 +40,18 @@ public class ModelContrat implements Serializable {
     private List<Contrat> liste;
     private Contrat courant;
     private int idParentCourant;
+    
+	private List<Garde> gardesContrat;
+	
+	private Garde gardeASupprimer;
+
 
 
 	@EJB
     private IServiceContrat serviceContrat;
+	
+	@EJB
+    private IServiceGarde serviceGarde;
 
     @EJB
     private IServiceParent serviceParent; // EJB pour interagir avec les parents
@@ -78,6 +87,28 @@ public class ModelContrat implements Serializable {
     public void setIdParentCourant(int idParentCourant) {
 		this.idParentCourant = idParentCourant;
 	}
+    
+    public List<Garde> getGardesContrat() {
+        if (gardesContrat == null && courant != null && courant.getId() != null) {
+        	gardesContrat = new ArrayList<>();
+            for (DtoGarde dto : serviceGarde.listerParContrat(courant.getId())) {
+            	gardesContrat.add(mapper.map(dto));  // Mapper les DtoContrat vers des objets Contrat
+            }
+        }
+        
+//        logger.info("Contrats pour le parent {} sont {} ", courant.getNom(), contratsParent.toString());
+        
+        return gardesContrat;
+    }
+    
+    public Garde getGardeASupprimer() {
+        return gardeASupprimer;
+    }
+
+    public void setGardeASupprimer(Garde gardeASupprimer) {
+        this.gardeASupprimer = gardeASupprimer;
+    }
+    
     //-------
     // Initialisations
     //-------
@@ -124,6 +155,17 @@ public class ModelContrat implements Serializable {
         try {
             serviceContrat.supprimer(item.getId());
             liste.remove(item);
+            UtilJsf.messageInfo("Suppression effectuée avec succès.");
+        } catch (ExceptionValidation e) {
+            UtilJsf.messageError(e);
+        }
+        return null;
+    }
+    
+    public String supprimerGardeParContrat() {
+        try {
+            serviceGarde.supprimer(gardeASupprimer.getId());
+            gardesContrat.remove(gardeASupprimer);
             UtilJsf.messageInfo("Suppression effectuée avec succès.");
         } catch (ExceptionValidation e) {
             UtilJsf.messageError(e);

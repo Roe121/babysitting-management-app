@@ -4,15 +4,17 @@ import javax.annotation.processing.Generated;
 import javax.enterprise.context.ApplicationScoped;
 import projet.commun.dto.DtoCompte;
 import projet.commun.dto.DtoContrat;
+import projet.commun.dto.DtoGarde;
 import projet.commun.dto.DtoParent;
 import projet.ejb.data.Compte;
 import projet.ejb.data.Contrat;
+import projet.ejb.data.Garde;
 import projet.ejb.data.Parent;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2024-10-16T14:16:09+0200",
-    comments = "version: 1.5.5.Final, compiler: Eclipse JDT (IDE) 3.39.0.v20240820-0604, environment: Java 22.0.2 (Eclipse Adoptium)"
+    date = "2024-10-19T19:46:17+0200",
+    comments = "version: 1.5.5.Final, compiler: Eclipse JDT (IDE) 1.4.100.v20220318-0906, environment: Java 17.0.12 (Eclipse Adoptium)"
 )
 @ApplicationScoped
 public class IMapperEjbImpl implements IMapperEjb {
@@ -139,5 +141,41 @@ public class IMapperEjbImpl implements IMapperEjb {
         dtoContrat.setTarifHoraire( source.getTarifHoraire() );
 
         return dtoContrat;
+    }
+
+    @Override
+    public Garde map(DtoGarde source) {
+        if ( source == null ) {
+            return null;
+        }
+
+        Garde garde = new Garde();
+
+        garde.setId( source.getId() );
+        garde.setDateJour( source.getDateJour() );
+        garde.setHeureArrivee( source.getHeureArrivee() );
+        garde.setHeureDepart( source.getHeureDepart() );
+        garde.setContrat( map( source.getContrat() ) );
+        garde.setPrisRepas( source.isPrisRepas() );
+
+        return garde;
+    }
+
+    @Override
+    public DtoGarde map(Garde source) {
+        if ( source == null ) {
+            return null;
+        }
+
+        DtoGarde dtoGarde = new DtoGarde();
+
+        dtoGarde.setContrat( map( source.getContrat() ) );
+        dtoGarde.setDateJour( source.getDateJour() );
+        dtoGarde.setHeureArrivee( source.getHeureArrivee() );
+        dtoGarde.setHeureDepart( source.getHeureDepart() );
+        dtoGarde.setId( source.getId() );
+        dtoGarde.setPrisRepas( source.isPrisRepas() );
+
+        return dtoGarde;
     }
 }

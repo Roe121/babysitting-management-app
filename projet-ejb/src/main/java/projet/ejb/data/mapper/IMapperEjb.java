@@ -5,9 +5,11 @@ import org.mapstruct.factory.Mappers;
 
 import projet.commun.dto.DtoCompte;
 import projet.commun.dto.DtoContrat;
+import projet.commun.dto.DtoGarde;
 import projet.commun.dto.DtoParent;
 import projet.ejb.data.Compte;
 import projet.ejb.data.Contrat;
+import projet.ejb.data.Garde;
 import projet.ejb.data.Parent;
 
  
@@ -34,5 +36,12 @@ public interface IMapperEjb {
 	Contrat map( DtoContrat source );
 	
 	DtoContrat map( Contrat source );
+	
+	// Garde
+	
+	Garde map( DtoGarde source );
+	
+	DtoGarde map( Garde source );
+	
 	
 }

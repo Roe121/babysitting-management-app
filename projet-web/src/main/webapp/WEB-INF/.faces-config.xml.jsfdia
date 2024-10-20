@@ -31,14 +31,29 @@
     NAME="output5" PATH="/pages/admin/contrat/formulaire.xhtml"
     TARGET="rules:#pages#admin#contrat#formulaire.xhtml"
     TITLE="formulaireContrat" model-entity="JSFProcessItemOutput"/>
-   <PROCESS-ITEM-OUTPUT ID="contrats::#pages#admin#contrat#liste.xhtml"
-    NAME="output6" PATH="/pages/admin/contrat/liste.xhtml"
-    TARGET="rules:#pages#admin#contrat#liste.xhtml" TITLE="contrats" model-entity="JSFProcessItemOutput"/>
    <PROCESS-ITEM-OUTPUT
     ID="formulaireParent::#pages#admin#parent#formulaire.xhtml"
     NAME="output7" PATH="/pages/admin/parent/formulaire.xhtml"
     TARGET="rules:#pages#admin#parent#formulaire.xhtml"
     TITLE="formulaireParent" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT
+    ID="contratsTous::#pages#admin#contrat#listeTous.xhtml"
+    NAME="output10" PATH="/pages/admin/contrat/listeTous.xhtml"
+    TARGET="rules:#pages#admin#contrat#listeTous.xhtml"
+    TITLE="contratsTous" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT ID="contrats::#pages#admin#contrat#liste.xhtml"
+    NAME="output6" PATH="/pages/admin/contrat/liste.xhtml"
+    TARGET="rules:#pages#admin#contrat#liste.xhtml" TITLE="contrats" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT
+    ID="gardesParContrat::#pages#admin#garde#listeParContrat.xhtml"
+    NAME="output11" PATH="/pages/admin/garde/listeParContrat.xhtml"
+    TARGET="rules:#pages#admin#garde#listeParContrat.xhtml"
+    TITLE="gardesParContrat" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT
+    ID="formulaireGarde::#pages#admin#garde#formulaire.xhtml"
+    NAME="output12" PATH="/pages/admin/garde/formulaire.xhtml"
+    TARGET="rules:#pages#admin#garde#formulaire.xhtml"
+    TITLE="formulaireGarde" model-entity="JSFProcessItemOutput"/>
   </PROCESS-ITEM>
  </PROCESS-ITEM>
  <PROCESS-ITEM NAME="rules:#connexion.xhtml" PATH="/connexion.xhtml"
@@ -50,20 +65,28 @@
  <PROCESS-ITEM NAME="rules:#home.xhtml" PATH="/home.xhtml"
   SHAPE="552,40,50,25" model-entity="JSFProcessGroup" persistent="true"/>
  <PROCESS-ITEM NAME="rules:#pages#admin#parent#liste.xhtml"
-  PATH="/pages/admin/parent/liste.xhtml" SHAPE="848,360,50,25"
+  PATH="/pages/admin/parent/liste.xhtml" SHAPE="1056,304,50,25"
   model-entity="JSFProcessGroup" persistent="true"/>
  <PROCESS-ITEM NAME="rules:#pages#admin#contrat#formulaire.xhtml"
-  PATH="/pages/admin/contrat/formulaire.xhtml" SHAPE="192,496,50,25" model-entity="JSFProcessGroup"/>
- <PROCESS-ITEM NAME="rules:#pages#admin#contrat#liste.xhtml"
-  PATH="/pages/admin/contrat/liste.xhtml" SHAPE="120,472,50,25"
-  model-entity="JSFProcessGroup" persistent="true"/>
+  PATH="/pages/admin/contrat/formulaire.xhtml" SHAPE="104,504,50,25" model-entity="JSFProcessGroup"/>
+ <PROCESS-ITEM NAME="rules:#pages#admin#contrat#listeTous.xhtml"
+  PATH="/pages/admin/contrat/listeTous.xhtml" SHAPE="64,432,50,25" model-entity="JSFProcessGroup"/>
  <PROCESS-ITEM NAME="rules:#pages#admin#parent#formulaire.xhtml"
-  PATH="/pages/admin/parent/formulaire.xhtml" SHAPE="840,416,50,25"
+  PATH="/pages/admin/parent/formulaire.xhtml" SHAPE="1120,336,50,25"
   model-entity="JSFProcessGroup" persistent="true"/>
  <PROCESS-ITEM NAME="rules:#pages#admin#compte#formulaireAssMat.xhtml"
   PATH="/pages/admin/compte/formulaireAssMat.xhtml"
   SHAPE="800,168,50,25" model-entity="JSFProcessGroup" persistent="true"/>
  <PROCESS-ITEM NAME="rules:#pages#admin#compte#formulaireParent.xhtml"
   PATH="/pages/admin/compte/formulaireParent.xhtml" SHAPE="811,238,0,0"
+  model-entity="JSFProcessGroup" persistent="true"/>
+ <PROCESS-ITEM NAME="rules:#pages#admin#contrat#liste.xhtml"
+  PATH="/pages/admin/contrat/liste.xhtml" SHAPE="32,480,50,25"
+  model-entity="JSFProcessGroup" persistent="true"/>
+ <PROCESS-ITEM NAME="rules:#pages#admin#garde#listeParContrat.xhtml"
+  PATH="/pages/admin/garde/listeParContrat.xhtml" SHAPE="848,408,50,25"
+  model-entity="JSFProcessGroup" persistent="true"/>
+ <PROCESS-ITEM NAME="rules:#pages#admin#garde#formulaire.xhtml"
+  PATH="/pages/admin/garde/formulaire.xhtml" SHAPE="848,480,50,25"
   model-entity="JSFProcessGroup" persistent="true"/>
 </PROCESS>

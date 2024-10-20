@@ -49,6 +49,9 @@ public class Contrat implements Serializable {
     private Double indemniteEntretienMinimum;
 
     private Double indemniteRepas; // Facultatif, donc sans validation obligatoire
+    
+    
+    
 
     //------- Constructeurs -------
     public Contrat() {
@@ -184,4 +187,5 @@ public class Contrat implements Serializable {
         return "Contrat [id=" + id + ", nomEnfant=" + nomEnfant + ", prenomEnfant=" + prenomEnfant 
             + ", dateNaissanceEnfant=" + dateNaissanceEnfant + "]";
     }
+    
 }

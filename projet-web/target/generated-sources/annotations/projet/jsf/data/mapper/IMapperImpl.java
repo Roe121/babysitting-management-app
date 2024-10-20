@@ -4,14 +4,16 @@ import javax.annotation.processing.Generated;
 import javax.enterprise.context.ApplicationScoped;
 import projet.commun.dto.DtoCompte;
 import projet.commun.dto.DtoContrat;
+import projet.commun.dto.DtoGarde;
 import projet.commun.dto.DtoParent;
 import projet.jsf.data.Compte;
 import projet.jsf.data.Contrat;
+import projet.jsf.data.Garde;
 import projet.jsf.data.Parent;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2024-10-16T14:40:38+0200",
+    date = "2024-10-20T00:35:07+0200",
     comments = "version: 1.5.5.Final, compiler: Eclipse JDT (IDE) 1.4.100.v20220318-0906, environment: Java 17.0.12 (Eclipse Adoptium)"
 )
 @ApplicationScoped
@@ -261,6 +263,86 @@ public class IMapperImpl implements IMapper {
         target.setIndemniteEntretienTauxHoraire( source.getIndemniteEntretienTauxHoraire() );
         target.setIndemniteEntretienMinimum( source.getIndemniteEntretienMinimum() );
         target.setIndemniteRepas( source.getIndemniteRepas() );
+
+        return target;
+    }
+
+    @Override
+    public Garde map(DtoGarde source) {
+        if ( source == null ) {
+            return null;
+        }
+
+        Garde garde = new Garde();
+
+        garde.setId( source.getId() );
+        garde.setContrat( map( source.getContrat() ) );
+        garde.setDateJour( source.getDateJour() );
+        garde.setHeureArrivee( source.getHeureArrivee() );
+        garde.setHeureDepart( source.getHeureDepart() );
+        garde.setPrisRepas( source.isPrisRepas() );
+
+        return garde;
+    }
+
+    @Override
+    public DtoGarde map(Garde source) {
+        if ( source == null ) {
+            return null;
+        }
+
+        DtoGarde dtoGarde = new DtoGarde();
+
+        dtoGarde.setContrat( map( source.getContrat() ) );
+        dtoGarde.setDateJour( source.getDateJour() );
+        dtoGarde.setHeureArrivee( source.getHeureArrivee() );
+        dtoGarde.setHeureDepart( source.getHeureDepart() );
+        if ( source.getId() != null ) {
+            dtoGarde.setId( source.getId() );
+        }
+        dtoGarde.setPrisRepas( source.isPrisRepas() );
+
+        return dtoGarde;
+    }
+
+    @Override
+    public Garde duplicate(Garde source) {
+        if ( source == null ) {
+            return null;
+        }
+
+        Garde garde = new Garde();
+
+        garde.setId( source.getId() );
+        garde.setContrat( duplicate( source.getContrat() ) );
+        garde.setDateJour( source.getDateJour() );
+        garde.setHeureArrivee( source.getHeureArrivee() );
+        garde.setHeureDepart( source.getHeureDepart() );
+        garde.setPrisRepas( source.isPrisRepas() );
+
+        return garde;
+    }
+
+    @Override
+    public Garde update(Garde target, Garde source) {
+        if ( source == null ) {
+            return target;
+        }
+
+        target.setId( source.getId() );
+        if ( source.getContrat() != null ) {
+            if ( target.getContrat() == null ) {
+                target.setContrat( new Contrat() );
+            }
+            update( target.getContrat(), source.getContrat() );
+        }
+        else {
+            target.setContrat( null );
+        }
+        target.setDateJour( source.getDateJour() );
+        target.setHeureArrivee( source.getHeureArrivee() );
+        target.setHeureDepart( source.getHeureDepart() );
+        target.setPrisRepas( source.isPrisRepas() );
 
         return target;
     }

@@ -1,0 +1,76 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<ui:composition template="/template/page-standard.xhtml"
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:pe="http://primefaces.org/ui/extensions"
+	xmlns:rich="http://richfaces.org/rich"
+	xmlns:ct="http://www.chartistjsf.org/charts"
+	xmlns:tr="http://myfaces.apache.org/trinidad">
+
+	<f:metadata>
+		<f:viewParam name="id" value="#{modelGarde.courant.id}" />
+		<f:viewParam name="contratId" value="#{modelGarde.idContratCourant}" />
+		<f:viewAction action="#{modelGarde.actualiserCourant()}" />
+	</f:metadata>
+
+	<ui:define name="titre">Garde pour l'enfant : #{modelGarde.courant.contrat.nomEnfant} #{modelGarde.courant.contrat.prenomEnfant}</ui:define>
+
+	<ui:define name="contenu">
+
+		<h:form>
+
+			<table class="form">
+				<tr>
+					<td><h:outputLabel for="id">Id de la Garde :</h:outputLabel></td>
+					<td><h:inputText id="id" size="5" readonly="true"
+							value="#{modelGarde.courant.id}" /> <br /> <h:message for="id"
+							errorClass="error" /></td>
+				</tr>
+				<tr>
+					<td><h:outputLabel for="dateJour">Date de la garde :</h:outputLabel></td>
+					<td><p:calendar id="dateJour"
+							value="#{modelGarde.getDateJour()}" pattern="yyyy-MM-dd"
+							locale="fr" /> <h:message for="dateJour" errorClass="error" /></td>
+				</tr>
+				<tr>
+					<td><h:outputLabel for="heureArrivee">Heure d'arrivée :</h:outputLabel></td>
+					<td><p:datePicker id="heureArrivee"
+							value="#{modelGarde.courant.heureArrivee}" timeOnly="true"
+							pattern="HH:mm" showIcon="true" /> <h:message for="heureArrivee"
+							errorClass="error" /></td>
+				</tr>
+				<tr>
+					<td><h:outputLabel for="heureDepart">Heure de depart :</h:outputLabel></td>
+					<td><p:datePicker id="heureDepart"
+							value="#{modelGarde.courant.heureDepart}" timeOnly="true"
+							pattern="HH:mm" showIcon="true" /> <h:message for="heureDepart"
+							errorClass="error" /></td>
+				</tr>
+
+				<tr>
+					<td><h:outputLabel for="prisRepas">A pris le repas ?</h:outputLabel></td>
+					<td>
+						<!-- Utilisation de selectBooleanCheckbox pour gérer un champ booléen -->
+						<h:selectBooleanCheckbox id="prisRepas"
+							value="#{modelGarde.courant.prisRepas}" /> <br /> <h:message
+							for="prisRepas" errorClass="error" />
+					</td>
+				</tr>
+			</table>
+
+			<br />
+			<h:commandButton value="Valider"
+				action="#{modelGarde.validerMiseAJour()}" />
+
+			<h:button value="Retour" outcome="gardesParContrat">
+				<f:param name="id" value="#{modelGarde.idContratCourant}" />
+			</h:button>
+
+		</h:form>
+
+	</ui:define>
+
+</ui:composition>

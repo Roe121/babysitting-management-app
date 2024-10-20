@@ -1,0 +1,78 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<ui:composition template="/template/page-standard.xhtml"
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+
+	<f:metadata>
+		<f:viewParam name="id" value="#{modelContrat.courant.id}" />
+	</f:metadata>
+
+	<ui:define name="titre">Gardes pour l'enfant ID: #{modelContrat.courant.id}</ui:define>
+
+	<ui:define name="contenu">
+		<h:form>
+
+			<h:dataTable styleClass="liste" rowClasses="impair, pair"
+				value="#{modelContrat.gardesContrat}" var="garde" border="1">
+				<!-- Affiche la date de la garde -->
+				<h:column>
+					<f:facet name="header">Date de la garde</f:facet>
+					<h:outputText value="#{garde.dateJour}">
+						<f:convertDateTime pattern="yyyy-MM-dd" />
+					</h:outputText>
+				</h:column>
+
+				<!-- Heure d'arrivée de l'enfant -->
+				<h:column>
+					<f:facet name="header">Heure d'arrivée</f:facet>
+					<h:outputText value="#{garde.heureArrivee}" />
+				</h:column>
+
+				<!-- Heure de départ de l'enfant -->
+				<h:column>
+					<f:facet name="header">Heure de départ</f:facet>
+					<h:outputText value="#{garde.heureDepart}" />
+				</h:column>
+
+				<!-- Indique si l'enfant a pris un repas -->
+				<h:column>
+					<f:facet name="header">A pris le repas</f:facet>
+					<h:outputText value="#{garde.prisRepas ? 'Oui' :'Non'}" />
+				</h:column>
+
+				<h:column>
+					<f:facet name="header">Actions</f:facet>
+					<h:button outcome="formulaireGarde"
+						image="#{resource['images:modifier.png']}" title="Modifier"
+						styleClass="image-action">
+						<f:param name="id" value="#{garde.id}" />
+						<f:param name="contratId" value="#{modelContrat.courant.id}" />
+					</h:button>
+					<h:commandButton
+						action="#{modelContrat.supprimerGardeParContrat()}"
+						value="Supprimer"
+						onclick="return confirm('Confirmez-vous la suppression ?')"
+						image="#{resource['images:supprimer.png']}" title="Supprimer"
+						styleClass="image-action">
+						<f:setPropertyActionListener
+							target="#{modelContrat.gardeASupprimer}" value="#{garde}" />
+						<f:ajax render="@form" execute="@form" />
+					</h:commandButton>
+				</h:column>
+
+			</h:dataTable>
+
+			<br />
+			<h:button value="Ajouter une nouvelle garde"
+				outcome="formulaireGarde">
+				<f:param name="contratId" value="#{modelContrat.courant.id}" />
+			</h:button>
+
+			<h:button value="Retour" outcome="contratsTous">
+			</h:button>
+		</h:form>
+	</ui:define>
+
+</ui:composition>

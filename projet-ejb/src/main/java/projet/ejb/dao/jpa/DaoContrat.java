@@ -58,7 +58,7 @@ public class DaoContrat implements IDaoContrat {
 	@TransactionAttribute(NOT_SUPPORTED)
 	public List<Contrat> listerTout() {
 		em.clear();
-		var jpql = "SELECT c FROM Contrat c ORDER BY c.pseudo";
+		var jpql = "SELECT c FROM Contrat c ORDER BY c.nomEnfant";
 		var query = em.createQuery(jpql, Contrat.class);
 		return query.getResultList();
 	}
@@ -66,9 +66,6 @@ public class DaoContrat implements IDaoContrat {
 	@Override
 	@TransactionAttribute(NOT_SUPPORTED)
 	public List<Contrat> listerParParent(int idParent) {
-		
-		logger.info("Contrats pour le parent courant sont  {} ", em.createQuery("SELECT c FROM Contrat c WHERE c.parent.id = :idParent", Contrat.class)
-				.setParameter("idParent", idParent).getResultList());
 		
 		return em.createQuery("SELECT c FROM Contrat c WHERE c.parent.id = :idParent", Contrat.class)
 				.setParameter("idParent", idParent).getResultList();

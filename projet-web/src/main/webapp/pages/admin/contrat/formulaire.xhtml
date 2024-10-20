@@ -4,7 +4,8 @@
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:ui="http://java.sun.com/jsf/facelets"
-	xmlns:p="http://primefaces.org/ui">
+
+	>
 
 	<f:metadata>
 		<f:viewParam name="id" value="#{modelContrat.courant.id}" />
@@ -37,26 +38,26 @@
 							value="#{modelContrat.courant.prenomEnfant}" /> <br /> <h:message
 							for="prenomEnfant" errorClass="error" /></td>
 				</tr>
-				<tr>
-					<td><h:outputLabel for="dateNaissanceEnfant">Date de naissance de l'enfant :</h:outputLabel></td>
-					<td><p:calendar id="dateNaissanceEnfant"
-							value="#{modelContrat.courant.dateNaissanceEnfant}"
-							pattern="yyyy-MM-dd" locale="fr" /> <h:message
-							for="dateNaissanceEnfant" errorClass="error" /></td>
-				</tr>
-				<tr>
-					<td><h:outputLabel for="dateDebut">Date de début du contrat :</h:outputLabel></td>
-					<td><p:calendar id="dateDebut"
-							value="#{modelContrat.courant.dateDebut}" pattern="yyyy-MM-dd"
-							locale="fr" /> <h:message for="dateDebut" errorClass="error" />
-					</td>
-				</tr>
-				<tr>
-					<td><h:outputLabel for="dateFin">Date de fin du contrat :</h:outputLabel></td>
-					<td><p:calendar id="dateFin"
-							value="#{modelContrat.courant.dateFin}" pattern="yyyy-MM-dd"
-							locale="fr" /> <h:message for="dateFin" errorClass="error" /></td>
-				</tr>
+<!-- 				<tr> -->
+<!-- 					<td><h:outputLabel for="dateNaissanceEnfant">Date de naissance de l'enfant :</h:outputLabel></td> -->
+<!-- 					<td><p:calendar id="dateNaissanceEnfant" -->
+<!-- 							value="#{modelContrat.courant.dateNaissanceEnfant}" -->
+<!-- 							pattern="yyyy-MM-dd" locale="fr" /> <h:message -->
+<!-- 							for="dateNaissanceEnfant" errorClass="error" /></td> -->
+<!-- 				</tr> -->
+<!-- 				<tr> -->
+<!-- 					<td><h:outputLabel for="dateDebut">Date de début du contrat :</h:outputLabel></td> -->
+<!-- 					<td><p:calendar id="dateDebut" -->
+<!-- 							value="#{modelContrat.courant.dateDebut}" pattern="yyyy-MM-dd" -->
+<!-- 							locale="fr" /> <h:message for="dateDebut" errorClass="error" /> -->
+<!-- 					</td> -->
+<!-- 				</tr> -->
+<!-- 				<tr> -->
+<!-- 					<td><h:outputLabel for="dateFin">Date de fin du contrat :</h:outputLabel></td> -->
+<!-- 					<td><p:calendar id="dateFin" -->
+<!-- 							value="#{modelContrat.courant.dateFin}" pattern="yyyy-MM-dd" -->
+<!-- 							locale="fr" /> <h:message for="dateFin" errorClass="error" /></td> -->
+<!-- 				</tr> -->
 				<tr>
 					<td><h:outputLabel for="tarifHoraire">Tarif horaire :</h:outputLabel></td>
 					<td><h:inputText id="tarifHoraire" size="10"

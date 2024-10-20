@@ -37,13 +37,28 @@
    <to-view-id>/pages/admin/contrat/formulaire.xhtml</to-view-id>
   </navigation-case>
   <navigation-case>
+   <from-outcome>formulaireParent</from-outcome>
+   <to-view-id>/pages/admin/parent/formulaire.xhtml</to-view-id>
+  </navigation-case>
+  <navigation-case>
+   <from-outcome>contratsTous</from-outcome>
+   <to-view-id>/pages/admin/contrat/listeTous.xhtml</to-view-id>
+  </navigation-case>
+  <navigation-case>
    <from-outcome>contrats</from-outcome>
    <to-view-id>/pages/admin/contrat/liste.xhtml</to-view-id>
   </navigation-case>
   <navigation-case>
-   <from-outcome>formulaireParent</from-outcome>
-   <to-view-id>/pages/admin/parent/formulaire.xhtml</to-view-id>
+   <from-outcome>gardesParContrat</from-outcome>
+   <to-view-id>/pages/admin/garde/listeParContrat.xhtml</to-view-id>
+  </navigation-case>
+  <navigation-case>
+   <from-outcome>formulaireGarde</from-outcome>
+   <to-view-id>/pages/admin/garde/formulaire.xhtml</to-view-id>
   </navigation-case>
  </navigation-rule>
- <application/>
+ 
+     <application>
+        <view-handler>org.apache.myfaces.trinidadinternal.application.ViewHandlerImpl</view-handler>
+    </application>
 </faces-config>
