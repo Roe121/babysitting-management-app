@@ -144,30 +144,6 @@
 			<version>14.0.5</version>
 		</dependency>
 
-		<dependency>
-			<groupId>org.primefaces.extensions</groupId>
-			<artifactId>primefaces-extensions</artifactId>
-			<version>14.0.5</version>
-		</dependency>
-
-		<dependency>
-			<groupId>org.chartistjsf</groupId>
-			<artifactId>ChartistJSF</artifactId>
-			<version>2.1</version>
-		</dependency>
-
-		<dependency>
-			<groupId>org.apache.myfaces.trinidad</groupId>
-			<artifactId>trinidad-api</artifactId>
-			<version>2.1.0</version>
-		</dependency>
-
-		<dependency>
-			<groupId>org.apache.myfaces.trinidad</groupId>
-			<artifactId>trinidad-impl</artifactId>
-			<version>2.1.0</version>
-		</dependency>
-
 	</dependencies>
 
 	<build>

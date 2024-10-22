@@ -1,0 +1,48 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<ui:composition template="/template/page-standard.xhtml"
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+
+	<f:metadata>
+
+	</f:metadata>
+
+	<ui:define name="titre">Montants à payer par contrat</ui:define>
+
+	<ui:define name="contenu">
+		<h:form>
+
+			<p:dataTable value="#{modelContrat.liste}" var="contrat"
+				rowClasses="impair, pair" columnClasses="left, left, center">
+
+				<p:column headerText="Nom de l'enfant">
+        #{contrat.nomEnfant}
+    </p:column>
+
+				<p:column headerText="Prénom de l'enfant">
+        #{contrat.prenomEnfant}
+    </p:column>
+
+				<p:column headerText="Date de début">
+					<h:outputText value="#{contrat.dateDebut}" />
+				</p:column>
+
+				<p:column headerText="Date de fin">
+					<h:outputText value="#{contrat.dateFin}" />
+				</p:column>
+
+				<p:column headerText="Montant à payer pour le mois courant">
+					<h:outputText
+						value="#{statistiquesBean.calculerMontantAPayer(contrat)}" /> €
+				</p:column>
+
+			</p:dataTable>
+
+
+		</h:form>
+	</ui:define>
+
+</ui:composition>

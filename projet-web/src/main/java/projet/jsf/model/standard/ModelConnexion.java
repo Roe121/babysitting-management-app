@@ -42,6 +42,10 @@ public class ModelConnexion {
 		}
 		return courant;
 	}
+	
+	public Compte getCompteActif(){
+		return compteActif;
+	}
 
 	
 	//-------

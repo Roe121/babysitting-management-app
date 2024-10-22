@@ -54,6 +54,15 @@
     NAME="output12" PATH="/pages/admin/garde/formulaire.xhtml"
     TARGET="rules:#pages#admin#garde#formulaire.xhtml"
     TITLE="formulaireGarde" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT ID="menu::#pages#admin#stats#menu.xhtml"
+    NAME="output13" PATH="/pages/admin/stats/menu.xhtml"
+    TARGET="rules:#pages#admin#stats#menu.xhtml" TITLE="menu" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT ID="recap::#pages#admin#recap#liste.xhtml"
+    NAME="output14" PATH="/pages/admin/recap/liste.xhtml"
+    TARGET="rules:#pages#admin#recap#liste.xhtml" TITLE="recap" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT ID="recapParent::#pages#util#recap.xhtml"
+    NAME="output15" PATH="/pages/util/recap.xhtml"
+    TARGET="rules:#pages#util#recap.xhtml" TITLE="recapParent" model-entity="JSFProcessItemOutput"/>
   </PROCESS-ITEM>
  </PROCESS-ITEM>
  <PROCESS-ITEM NAME="rules:#connexion.xhtml" PATH="/connexion.xhtml"
@@ -88,5 +97,14 @@
   model-entity="JSFProcessGroup" persistent="true"/>
  <PROCESS-ITEM NAME="rules:#pages#admin#garde#formulaire.xhtml"
   PATH="/pages/admin/garde/formulaire.xhtml" SHAPE="848,480,50,25"
+  model-entity="JSFProcessGroup" persistent="true"/>
+ <PROCESS-ITEM NAME="rules:#pages#admin#stats#menu.xhtml"
+  PATH="/pages/admin/stats/menu.xhtml" SHAPE="352,576,50,25"
+  model-entity="JSFProcessGroup" persistent="true"/>
+ <PROCESS-ITEM NAME="rules:#pages#admin#recap#liste.xhtml"
+  PATH="/pages/admin/recap/liste.xhtml" SHAPE="688,576,50,25"
+  model-entity="JSFProcessGroup" persistent="true"/>
+ <PROCESS-ITEM NAME="rules:#pages#util#recap.xhtml"
+  PATH="/pages/util/recap.xhtml" SHAPE="958,538,0,0"
   model-entity="JSFProcessGroup" persistent="true"/>
 </PROCESS>

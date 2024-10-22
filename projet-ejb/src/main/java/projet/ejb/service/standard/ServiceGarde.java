@@ -2,7 +2,10 @@ package projet.ejb.service.standard;
 
 import static javax.ejb.TransactionAttributeType.NOT_SUPPORTED;
 
+import java.time.Duration;
+import java.time.LocalTime;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import javax.ejb.Remote;
@@ -88,7 +91,55 @@ public class ServiceGarde implements IServiceGarde {
 	    return listeDto;
 	}
 	
+	@Override
+	public List<DtoGarde> listerParDate(Date dateGarde) {
+	    List<Garde> gardes = daoGarde.listerParDate(dateGarde);
+	    List<DtoGarde> listeDto = new ArrayList<>();
+	    for (Garde garde : gardes) {
+	        listeDto.add(mapper.map(garde));  
+	    }
+	    return listeDto;
+	}
 	
+	@Override
+	public List<DtoGarde> listerParMoisEtParent(Date dateMois,int idParent) {
+	    List<Garde> gardes = daoGarde.listerParMoisEtParent(dateMois,idParent);
+	    List<DtoGarde> listeDto = new ArrayList<>();
+	    for (Garde garde : gardes) {
+	        listeDto.add(mapper.map(garde));  
+	    }
+	    return listeDto;
+	}
+	
+	@Override
+	public double calculerHeuresTravaillees(DtoGarde garde) {
+	    // Récupérer les heures d'arrivée et de départ
+	    LocalTime heureArrivee = garde.getHeureArrivee();
+	    LocalTime heureDepart = garde.getHeureDepart();
+	    
+	    // Calculer la durée entre l'heure d'arrivée et l'heure de départ
+	    long diffInMinutes = Duration.between(heureArrivee, heureDepart).toMinutes();
+	    
+	    // Convertir les minutes en heures
+	    return (double) diffInMinutes / 60.0;
+	}
+
+	@Override
+    public double getMontantAPayer(DtoGarde garde) {
+        double heuresTravaillees = calculerHeuresTravaillees(garde);
+
+        // Calculer la rémunération de base
+        double remuneration = heuresTravaillees * garde.getContrat().getTarifHoraire();
+
+        // Calculer l'indemnité d'entretien (minimum ou en fonction des heures travaillées)
+        double indemniteEntretien = Math.max(garde.getContrat().getIndemniteEntretienTauxHoraire() * heuresTravaillees, garde.getContrat().getIndemniteEntretienMinimum());
+
+        // Ajouter l'indemnité de repas si applicable
+        double indemniteRepasTotale = garde.isPrisRepas() ? garde.getContrat().getIndemniteRepas() : 0.0;
+
+        // Calculer le montant total à payer pour la journée
+        return remuneration + indemniteEntretien + indemniteRepasTotale;
+    }
 
 	// Méthodes auxiliaires
 

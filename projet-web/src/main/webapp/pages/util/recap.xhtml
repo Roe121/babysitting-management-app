@@ -1,0 +1,67 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<ui:composition template="/template/page-standard.xhtml"
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+
+	<ui:define name="titre">Récapitulatif des gardes</ui:define>
+
+	<ui:define name="contenu">
+		<!-- Formulaire pour sélectionner un mois -->
+		<h:form id="formRecap">
+			<h3>Sélectionner un mois :</h3>
+
+			<!-- Sélecteur de mois -->
+			<h:selectOneMenu value="#{modelUtil.moisSelectionne}">
+				<f:selectItems value="#{modelUtil.moisDisponibles}" var="mois"
+					itemValue="#{mois}" itemLabel="#{mois}">
+				</f:selectItems>
+				<f:converter converterId="dateConverter" />
+			</h:selectOneMenu>
+
+			<!-- Bouton pour consulter les gardes -->
+			<h:commandButton value="Consulter"
+				action="#{modelUtil.consulterGarde}" />
+		</h:form>
+
+		<!-- Affichage des gardes et du montant total -->
+		<h:panelGroup rendered="#{not empty modelUtil.gardes}">
+			<h3>Gardes pour le mois sélectionné</h3>
+
+			<!-- Tableau pour afficher les détails des gardes -->
+			<h:dataTable styleClass="liste" rowClasses="impair, pair"
+				columnClasses="left,left,center" value="#{modelUtil.gardes}" var="garde" border="1"
+				cellpadding="5">
+				<h:column>
+					<f:facet name="header">Date</f:facet>
+					<h:outputText value="#{garde.dateJour}">
+						<f:convertDateTime pattern="yyyy-MM-dd" timeZone="Europe/Paris" />
+					</h:outputText>
+				</h:column>
+				<h:column>
+					<f:facet name="header">Heures de garde</f:facet>
+					<h:outputText value="#{garde.heureArrivee}">
+					</h:outputText> -
+                    <h:outputText value="#{garde.heureDepart}">
+					</h:outputText>
+				</h:column>
+				<h:column>
+					<f:facet name="header">Montant à payer</f:facet>
+					<h:outputText value="#{modelUtil.calculerMontant(garde)}">
+						<f:convertNumber type="currency" currencySymbol="€" />
+					</h:outputText>
+				</h:column>
+			</h:dataTable>
+
+			<!-- Affichage du montant total pour le mois -->
+			<h:panelGrid columns="2">
+				<h:outputText value="Total pour le mois :" />
+				<h:outputText value="#{modelUtil.totalMontant}">
+					<f:convertNumber type="currency" currencySymbol="€" />
+				</h:outputText>
+			</h:panelGrid>
+		</h:panelGroup>
+	</ui:define>
+
+</ui:composition>

@@ -1,5 +1,6 @@
 package projet.ejb.dao;
 
+import java.util.Date;
 import java.util.List;
 
 import projet.ejb.data.Garde;
@@ -18,5 +19,9 @@ public interface IDaoGarde {
 	List<Garde> listerTout();
 	
 	List<Garde> listerParContrat(int idContrat);
+	
+	List<Garde> listerParDate(Date dateGarde);
+	
+	List<Garde> listerParMoisEtParent(Date dateMois,int idParent);
 
 }

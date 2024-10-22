@@ -20,7 +20,7 @@
 				<h:column>
 					<f:facet name="header">Date de la garde</f:facet>
 					<h:outputText value="#{garde.dateJour}">
-						<f:convertDateTime pattern="yyyy-MM-dd" />
+						<f:convertDateTime pattern="yyyy-MM-dd" timeZone="Europe/Paris" />
 					</h:outputText>
 				</h:column>
 

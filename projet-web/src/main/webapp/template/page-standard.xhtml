@@ -4,7 +4,8 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:f="http://java.sun.com/jsf/core"
-	xmlns:ui="http://java.sun.com/jsf/facelets">
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
 <h:head>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 	<title><ui:insert name="titre">Titre</ui:insert></title>
@@ -32,14 +33,22 @@
 			<h:form rendered="#{compteActif.loggedIn}">
 				<h:link outcome="home" value="Accueil"
 					rendered="#{compteActif.loggedIn }" />
+
+				<!-- Lien Suivi mensuel pour utilisateurs normaux -->
+				<h:link outcome="recapParent" value="Suivi mensuel"
+					rendered="#{compteActif.loggedIn &amp;&amp; not compteActif.admin}" />
+
+				<!-- Lien pour l'administrateur -->
 				<h:panelGroup rendered="#{compteActif.admin}">
 					<h:link outcome="comptes" value="Comptes" />
 					<h:link outcome="parents" value="Parents" />
 					<h:link outcome="contratsTous" value="Suivi" />
-					<h:link outcome="comptes" value="Statistiques" />
-					<h:link outcome="comptes" value="Récaps" />
+					<h:link outcome="menu" value="Statistiques" />
+					<h:link outcome="recap" value="Récaps" />
 					<h:link outcome="comptes" value="Tarifs" />
 				</h:panelGroup>
+
+				<!-- Déconnexion -->
 				<h:commandLink action="#{compteActif.disconnect()}"
 					value="Déconnexion" />
 			</h:form>

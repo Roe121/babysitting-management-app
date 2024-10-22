@@ -1,0 +1,149 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<ui:composition template="/template/page-standard.xhtml"
+    xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:ui="http://java.sun.com/jsf/facelets"
+    xmlns:p="http://primefaces.org/ui">
+
+    <f:metadata>
+    </f:metadata>
+
+    <ui:define name="titre">Statistiques</ui:define>
+
+    <ui:define name="contenu">
+        <h:body>
+        <h:form style="width: 80%;">
+
+
+            <!-- Utilisation de p:panelGrid pour organiser les graphiques -->
+            <p:panelGrid columns="1" style="width: 100%;" columnClasses="chart-container" cellpadding="10">
+
+                <!-- Graphique 1 : Rémunération journalière -->
+                <p:row>
+                    <h2 style="text-align: center;">Rémunération par Jour</h2>
+                    <div style="display: flex; justify-content: center; margin-bottom: 20px;">
+                        <p:chart type="bar" style="width: 80%; height: 500px; display: flex; justify-content: center;">
+                            <f:facet name="value">
+                                {
+                                    type: 'bar',
+                                    data: {
+                                        labels: #{modelStatistiques.labelsJournaliers},  <!-- Utiliser les labels journaliers -->
+                                        datasets: [{
+                                            label: 'Rémunération par jour',
+                                            data: #{modelStatistiques.remunerationsJournalières},  <!-- Utiliser les rémunérations journalières -->
+                                            borderWidth: 1,
+                                            backgroundColor: ['CornflowerBlue']
+                                        }]
+                                    },
+                                    options: {
+                                        scales: {
+                                            y: {
+                                                beginAtZero: true
+                                            }
+                                        }
+                                    }
+                                }
+                            </f:facet>
+                        </p:chart>
+                    </div>
+                </p:row>
+
+                <!-- Graphique 2 : Rémunération mensuelle -->
+                <p:row>
+                    <h2 style="text-align: center;">Rémunération par Mois</h2>
+                    <div style="display: flex; justify-content: center; margin-bottom: 20px;">
+                        <p:chart type="line" style="width: 80%; height: 500px;">
+                            <f:facet name="value">
+                                {
+                                    type: 'line',
+                                    data: {
+                                        labels: #{modelStatistiques.labelsMensuels},  <!-- Utiliser les labels mensuels -->
+                                        datasets: [{
+                                            label: 'Rémunération par mois',
+                                            data: #{modelStatistiques.remunerationsMensuelles},  <!-- Utiliser les rémunérations mensuelles -->
+                                            borderColor: 'CornflowerBlue',  
+                                            backgroundColor: 'rgba(100,149,237, 0.2)', 
+                                            fill: true,  
+                                            tension: 0.4, 
+                                            pointRadius: 5,  
+                                            pointBackgroundColor: 'CornflowerBlue' 
+                                        }]
+                                    },
+                                    options: {
+                                        scales: {
+                                            y: {
+                                                beginAtZero: true
+                                            }
+                                        },
+                                        plugins: {
+                                            legend: {
+                                                display: true,  // Afficher la légende
+                                                position: 'top' // Position de la légende
+                                            }
+                                        }
+                                    }
+                                }
+                            </f:facet>
+                        </p:chart>
+                    </div>
+                </p:row>
+
+                <!-- Graphique 3 : Jours Travaillés et RMJT -->
+                <p:row>
+                    <h2 style="text-align: center;">Jours Travaillés et RMJT par Mois</h2>
+                    <div style="display: flex; justify-content: center; margin-bottom: 20px;">
+                        <p:chart type="bar" style="width: 80%; height: 500px;">
+                            <f:facet name="value">
+                                {
+                                    type: 'bar',
+                                    data: {
+                                        labels: #{modelStatistiques.labelsMensuels},  // Les mois
+                                        datasets: [
+                                            {
+                                                label: 'Jours Travaillés',
+                                                data: #{modelStatistiques.joursTravaillésMensuels},  // Données des jours travaillés
+                                                backgroundColor: 'CornflowerBlue',  // Couleur pour les jours travaillés
+                                                yAxisID: 'y'  // Utiliser un axe Y pour les jours travaillés
+                                            },
+                                            {
+                                                label: 'Rémunération Moyenne par Jour Travaillé (RMJT)',
+                                                data: #{modelStatistiques.rmjt},  // Données RMJT
+                                                backgroundColor: 'LightCoral',  // Couleur pour le RMJT
+                                                yAxisID: 'y1'  // Utiliser un second axe Y pour le RMJT
+                                            }
+                                        ]
+                                    },
+                                    options: {
+                                        scales: {
+                                            y: {
+                                                beginAtZero: true,
+                                                position: 'left',  // Axe Y pour les jours travaillés
+                                                title: {
+                                                    display: true,
+                                                    text: 'Jours Travaillés'
+                                                }
+                                            },
+                                            y1: {
+                                                beginAtZero: true,
+                                                position: 'right',  // Axe Y secondaire pour le RMJT
+                                                title: {
+                                                    display: true,
+                                                    text: 'RMJT (€)'
+                                                },
+                                                grid: {
+                                                    drawOnChartArea: false  // Empêche les lignes de grille de cet axe d'apparaître
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            </f:facet>
+                        </p:chart>
+                    </div>
+                </p:row>
+            </p:panelGrid>
+        </h:form>
+        </h:body>
+    </ui:define>
+</ui:composition>

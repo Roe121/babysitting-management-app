@@ -56,9 +56,20 @@
    <from-outcome>formulaireGarde</from-outcome>
    <to-view-id>/pages/admin/garde/formulaire.xhtml</to-view-id>
   </navigation-case>
+  <navigation-case>
+   <from-outcome>menu</from-outcome>
+   <to-view-id>/pages/admin/stats/menu.xhtml</to-view-id>
+  </navigation-case>
+  <navigation-case>
+   <from-outcome>recap</from-outcome>
+   <to-view-id>/pages/admin/recap/liste.xhtml</to-view-id>
+  </navigation-case>
+  <navigation-case>
+   <from-outcome>recapParent</from-outcome>
+   <to-view-id>/pages/util/recap.xhtml</to-view-id>
+  </navigation-case>
  </navigation-rule>
- 
-     <application>
-        <view-handler>org.apache.myfaces.trinidadinternal.application.ViewHandlerImpl</view-handler>
-    </application>
+ <application>
+  <view-handler>org.apache.myfaces.trinidadinternal.application.ViewHandlerImpl</view-handler>
+ </application>
 </faces-config>

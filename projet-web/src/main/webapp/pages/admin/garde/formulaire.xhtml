@@ -31,9 +31,10 @@
 				</tr>
 				<tr>
 					<td><h:outputLabel for="dateJour">Date de la garde :</h:outputLabel></td>
-					<td><p:calendar id="dateJour"
-							value="#{modelGarde.getDateJour()}" pattern="yyyy-MM-dd"
-							locale="fr" /> <h:message for="dateJour" errorClass="error" /></td>
+					<td><h:inputText id="dateJour"
+							value="#{modelGarde.courant.dateJour}">
+							<f:convertDateTime pattern="yyyy-MM-dd" />
+						</h:inputText></td>
 				</tr>
 				<tr>
 					<td><h:outputLabel for="heureArrivee">Heure d'arrivée :</h:outputLabel></td>

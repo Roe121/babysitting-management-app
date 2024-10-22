@@ -149,6 +149,7 @@ public class ModelContrat implements Serializable {
 			return null;
 		}
 	}
+    
 
 
     public String supprimer(Contrat item) {
@@ -158,6 +159,7 @@ public class ModelContrat implements Serializable {
             UtilJsf.messageInfo("Suppression effectuée avec succès.");
         } catch (ExceptionValidation e) {
             UtilJsf.messageError(e);
+            
         }
         return null;
     }
@@ -172,4 +174,7 @@ public class ModelContrat implements Serializable {
         }
         return null;
     }
+    
+    
+    
 }
