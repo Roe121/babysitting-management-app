@@ -11,65 +11,41 @@
 
 		<h:form>
 
-			<h:dataTable styleClass="liste" value="#{modelParent.liste}"
-				var="item" rowClasses="impair, pair"
-				columnClasses="left,left,center">
+			<h:dataTable styleClass="liste" value="#{modelTarif.liste}"
+				var="item" rowClasses="impair, pair" columnClasses="left">
 				<h:column>
 					<f:facet name="header">
-						<h:outputText value="Nom" />
+						<h:outputText value="typeTarif" />
 					</f:facet>
-				#{item.nom}
+				#{item.typeTarif}
 			</h:column>
-
 				<h:column>
 					<f:facet name="header">
-						<h:outputText value="Prénom" />
+						<h:outputText value="montant" />
 					</f:facet>
-				#{item.prenom}
+				#{item.montant}
 			</h:column>
-
 				<h:column>
 					<f:facet name="header">
-						<h:outputText value="Téléphone" />
-					</f:facet>
-				#{item.telephone}
-			</h:column>
 
-				<h:column>
-					<f:facet name="header">
-						<h:outputText value="Adresse postale " />
-					</f:facet>
-				#{item.adressePostale}
-			</h:column>
-
-				<h:column>
-					<f:facet name="header">
-						<h:outputText value="Adresse e-mail" />
-					</f:facet>
-				#{item.adresseEmail}
-			</h:column>
-
-				<h:column>
-					<f:facet name="header">
 						<h:outputText value="Actions" />
 					</f:facet>
 					<h:button outcome="formulaire?id=#{item.id}"
 						image="#{ resource['images:modifier.png'] }" title="Modifier"
 						styleClass="image-action" />
+					<h:commandButton action="#{modelTarif.supprimer(item)}"
+						value="Supprimer"
+						onclick="return confirm('Confirmez-vous la suppression ?')"
+						image="#{ resource['images:supprimer.png'] }" title="Supprimer"
+						styleClass="image-action"/>
 				</h:column>
 
-				<h:column>
-					<f:facet name="header">A un compte ?</f:facet>
-					<h:outputText value="#{item.compte == null ? 'Non' : 'Oui'}" />
-				</h:column>
 
 			</h:dataTable>
 
 			<br />
 			<h:button value="Ajouter" outcome="formulaire" />
-
 		</h:form>
-
 	</ui:define>
 
 </ui:composition>

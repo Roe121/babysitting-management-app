@@ -5,8 +5,10 @@ import org.mapstruct.factory.Mappers;
 
 import projet.commun.dto.DtoCompte;
 import projet.commun.dto.DtoParent;
+import projet.commun.dto.DtoTarif;
 import projet.ejb.data.Compte;
 import projet.ejb.data.Parent;
+import projet.ejb.data.Tarif;
 
  
 @Mapper( componentModel = "cdi" )
@@ -26,5 +28,11 @@ public interface IMapperEjb {
 	Parent map( DtoParent source );
 	
 	DtoParent map( Parent source );
+	
+	// Tarif
+	
+	Tarif map( DtoTarif source );
+	
+	DtoTarif map( Tarif source );
 	
 }

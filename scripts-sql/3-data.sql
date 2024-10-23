@@ -5,7 +5,7 @@ DELETE FROM garde;
 DELETE FROM contrat;
 DELETE FROM parent;
 DELETE FROM compte;
-DELETE FROM tarifs_en_vigueur;
+DELETE FROM tarif;
 
 -- Insère les données pour la table compte
 INSERT INTO compte (IdCompte, Pseudo, MotDePasse, flagadmin) VALUES 
@@ -25,13 +25,13 @@ INSERT INTO parent (IdParent, IdCompte, Nom, Prenom, AdressePostale, AdresseEmai
 ALTER TABLE parent ALTER COLUMN IdParent RESTART WITH 4;
 
 -- Insère les données pour la table tarifs_en_vigueur
-INSERT INTO tarifs_en_vigueur (IdTarif, TypeTarif, Montant) VALUES 
+INSERT INTO tarif (IdTarif, TypeTarif, Montant) VALUES 
 (1, 'Tarif Horaire Garde', 3.57),  
 (2, 'Indemnité Entretien', 0.35),  
 (3, 'Indemnité de Repas', 2.50); 
 
 -- Réinitialise l'identifiant IdTarif à 4
-ALTER TABLE tarifs_en_vigueur ALTER COLUMN IdTarif RESTART WITH 4;
+ALTER TABLE tarif ALTER COLUMN IdTarif RESTART WITH 4;
 
 -- Insère les données pour la table contrat
 INSERT INTO contrat (IdContrat, IdParent, NomEnfant, PrenomEnfant, DateNaissanceEnfant, DateDebut, DateFin, TarifHoraire, IndemniteEntretienTauxHoraire, IndemniteEntretienMinimum, IndemniteRepas) VALUES 

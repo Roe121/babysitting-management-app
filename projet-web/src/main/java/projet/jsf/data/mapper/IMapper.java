@@ -5,8 +5,10 @@ import org.mapstruct.MappingTarget;
 
 import projet.commun.dto.DtoCompte;
 import projet.commun.dto.DtoParent;
+import projet.commun.dto.DtoTarif;
 import projet.jsf.data.Compte;
 import projet.jsf.data.Parent;
+import projet.jsf.data.Tarif;
 
 @Mapper(componentModel = "cdi")
 public interface IMapper {
@@ -34,5 +36,17 @@ public interface IMapper {
 	Parent duplicate(Parent source);
 
 	Parent update(@MappingTarget Parent target, Parent source);
+
+	// -------
+	// Tarif
+	// -------
+
+	Tarif map(DtoTarif source);
+
+	DtoTarif map(Tarif source);
+
+	Tarif duplicate(Tarif source);
+
+	Tarif update(@MappingTarget Tarif target, Tarif source);
 
 }
